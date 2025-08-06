@@ -1,38 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Clothing Store - Contact Us</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        /* Custom CSS - specific to Contact Us hero */
-        .contact-hero-section {
-            background-image: url('https://images.unsplash.com/photo-1533227409241-11b0e0147926?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* A relevant background image for contact page */
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
-</head>
-<body class="bg-gray-100 min-h-screen flex flex-col">
-    <header class="bg-white shadow sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-
-            <div class="flex items-center space-x-3">
-                <img src="https://i.pinimg.com/1200x/27/10/7d/27107d83b79b594055e49591812a224a.jpg" alt="Logo" class="h-20 w-20">
-                <h1 class="text-3xl font-semibold text-indigo-700 tracking-tight">My Clothing Store</h1>
-            </div>
-
-            <nav class="space-x-6 hidden md:flex">
-                <a href="{{ route('home') }}" class="@if (Route::is('home')) text-blue-600 font-semibold @else text-gray-700 @endif hover:text-blue-500 transition">Home</a>
-                <a href="{{ route('shop') }}" class="@if (Route::is('shop')) text-blue-600 font-semibold @else text-gray-700 @endif hover:text-blue-500 transition">Shop</a>
-                <a href="{{ route('about') }}" class="@if (Route::is('about')) text-blue-600 font-semibold @else text-gray-700 @endif hover:text-blue-500 transition">About</a>
-                <a href="{{ route('contact') }}" class="@if (Route::is('contact')) text-blue-600 font-semibold @else text-gray-700 @endif hover:text-blue-500 transition">Contact</a>
-            </nav>
-        </div>
-    </header>
-
+@extends('frontend.components.app')
+@section('content')
     <main class="flex-grow">
         <section class="contact-hero-section bg-cover bg-center h-[350px] flex items-center justify-center text-white relative">
             <div class="absolute inset-0 bg-black opacity-60"></div> <div class="text-center z-10 p-6">
@@ -70,7 +37,8 @@
             <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div class="bg-white p-8 rounded-lg shadow-md">
                     <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Send Us a Message</h2>
-                    <form action="#" method="POST" class="space-y-6">
+                    <form action="{{route("contact.store")}}" method="POST" class="space-y-6">
+                        @csrf
                         <div>
                             <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
                             <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-indigo-500" placeholder="Your Name" required>
@@ -119,49 +87,11 @@
                 <p class="text-lg mb-8 max-w-2xl mx-auto">
                     Browse our latest trends and find your perfect style today.
                 </p>
-                <a href="{{ route('shop') }}" class="mt-4 bg-white text-blue-600 hover:bg-gray-200 font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block">
+                <a href="{{ route('shop1') }}" class="mt-4 bg-white text-blue-600 hover:bg-gray-200 font-bold py-3 px-8 rounded-full text-lg transition duration-300 inline-block">
                     Shop Now
                 </a>
             </div>
         </section>
 
     </main>
-
-    <footer class="bg-gray-800 text-gray-200">
-        <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-                <h2 class="text-xl font-semibold mb-4">My Clothing Store</h2>
-                <p>Your go-to place for stylish and affordable fashion.</p>
-                <div class="flex space-x-4 mt-4">
-                    <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-            <div>
-                <h2 class="text-xl font-semibold mb-4">Contact Us</h2>
-                <p>📍 Kathmandu, Nepal</p>
-                <p>📞 +977-9800000000</p>
-                <p>✉️ support@myclothingstore.com</p>
-            </div>
-            <div>
-                <h2 class="text-xl font-semibold mb-4">Quick Links</h2>
-                <ul class="space-y-2">
-                    <li><a href="{{ route('home') }}" class="hover:text-white">Home</a></li>
-                    <li><a href="{{ route('shop') }}" class="hover:text-white">Shop</a></li>
-                    <li><a href="{{ route('about') }}" class="hover:text-white">About</a></li>
-                    <li><a href="{{ route('contact') }}" class="hover:text-white">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="bg-gray-900 text-center text-sm py-4">
-            © {{ date('Y') }} My Clothing Store. All rights reserved.
-        </div>
-    </footer>
-
-</body>
-</html>
-
-
+@endsection
