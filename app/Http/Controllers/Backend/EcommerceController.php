@@ -56,8 +56,7 @@ class EcommerceController extends Controller
      */
     public function edit(string $id)
     {
-        $ecommerce=Ecommerce::find($id);
-        return view('backend.ecommerce.edit',compact('ecommerce'));
+        
     }
 
     /**
