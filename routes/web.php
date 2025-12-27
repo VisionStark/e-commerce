@@ -7,6 +7,8 @@ use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\ShopController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\AdminController;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
