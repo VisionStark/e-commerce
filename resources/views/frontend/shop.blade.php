@@ -30,7 +30,7 @@
 
 <div x-data="cartSystem()" class="p-6 space-y-6">
     <!-- Product Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {{-- <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($shop as $item)
         @php
             // Convert price to float safely
@@ -60,8 +60,51 @@
             </div>
         </div>
         @endforeach
-    </div>
+    </div> --}}
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    @foreach ($shop as $item)
 
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+
+            <div class="h-48 flex items-center justify-center p-4 bg-gray-50">
+                <img
+                    src="{{ $item->image }}"
+                    class="max-h-full max-w-full object-contain"
+                    alt="{{ $item->name }}"
+                >
+            </div>
+
+            <div class="p-4">
+                <h3 class="text-lg font-bold text-gray-800">
+                    {{ $item->name }}
+                </h3>
+
+                <p class="text-gray-600 text-sm mt-1 line-clamp-2">
+                    {{ $item->description }}
+                </p>
+
+                <div class="mt-4 flex justify-between items-center">
+                    <span class="text-lg font-semibold text-green-600">
+                        ${{ number_format($item->price, 2) }}
+                    </span>
+
+                    <button
+                        @click="addToCart({
+                            id: {{ $item->id }},
+                            name: @js($item->name),
+                            price: {{ $item->price }},
+                            image: @js($item->image)
+                        }, $event)"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm transition-colors"
+                    >
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    @endforeach
+</div>
     <!-- Shopping Cart Modal -->
     <div x-show="showCart" x-transition class="fixed inset-0 z-50 overflow-y-auto" style="display: none;">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
